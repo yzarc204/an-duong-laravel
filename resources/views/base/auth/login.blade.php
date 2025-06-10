@@ -8,7 +8,6 @@
     <title>Login</title>
     <link rel="stylesheet" href={{ asset('vendors/bootstrap/css/bootstrap.min.css') }} />
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
 </head>
 
 <body>
