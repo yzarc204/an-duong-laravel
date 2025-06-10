@@ -22,11 +22,6 @@
                                     <img src="" alt="Logo" width="175" height="57">
                                 </a>
                             </div>
-                            @if (session()->has('message'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session()->get('message') }}
-                                </div>
-                            @endif
                             <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Đăng ký tài khoản</h2>
                             <form action="{{ route('register') }}" method="POST">
                                 @csrf
@@ -131,8 +126,11 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <p class="m-0 text-secondary text-center">Đã có tài khoản? <a href="#!"
-                                                class="text-theme-darken text-decoration-none">Đăng nhập ngay</a>
+                                        <p class="m-0 text-secondary text-center">Đã có tài khoản?
+                                            <a href="{{ route('login') }}"
+                                                class="text-theme-darken text-decoration-none">
+                                                Đăng nhập ngay
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
@@ -143,6 +141,17 @@
             </div>
         </div>
     </section>
+
+    <script src="{{ asset('vendors/sweetalert/sweetalert2.all.min.js') }}"></script>
+    @if (session()->has('message'))
+        <script>
+            const message = "{{ session()->get('message') }}";
+            Swal.fire({
+                title: message,
+                icon: 'success'
+            });
+        </script>
+    @endif
 </body>
 
 </html>

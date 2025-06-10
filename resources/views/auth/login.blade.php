@@ -12,10 +12,10 @@
 </head>
 
 <body>
-    <section class="bg-theme-darken">
+    <section class="bg-theme-darken vh-100">
         <div class="container">
             <div class="row justify-content-center py-5">
-                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="col-12 col-lg-5 col-md-7">
                     <div class="card border border-light-subtle rounded-3 shadow-sm">
                         <div class="card-body p-3 p-md-4 p-xl-5">
                             <div class="text-center mb-3">
@@ -24,7 +24,8 @@
                                 </a>
                             </div>
                             <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Đăng nhập</h2>
-                            <form action="#!">
+                            <form action="{{ route('login') }}" method="POST">
+                                @csrf
                                 <div class="row gy-2 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
@@ -51,8 +52,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <p class="m-0 text-secondary text-center">Chưa có tài khoản? <a href="#!"
-                                                class="text-theme-darken text-decoration-none">Đăng ký ngay</a></p>
+                                        <p class="m-0 text-secondary text-center">Chưa có tài khoản?
+                                            <a href="{{ route('register') }}"
+                                                class="text-theme-darken text-decoration-none">
+                                                Đăng ký ngay
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                             </form>
@@ -62,6 +67,17 @@
             </div>
         </div>
     </section>
+
+    <script src="{{ asset('vendors/sweetalert/sweetalert2.all.min.js') }}"></script>
+    @if (session()->has('message'))
+        <script>
+            const message = "{{ session()->get('message') }}";
+            Swal.fire({
+                title: message,
+                icon: 'error'
+            });
+        </script>
+    @endif
 </body>
 
 </html>
