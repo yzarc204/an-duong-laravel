@@ -1,0 +1,31 @@
+:root {
+    --theme-primary-color: #1dcd9f;
+    --theme-secondary-color: hsl(0, 0%, 13%);
+    --theme-black: #000000;
+    --theme-darken-color: #169976;
+}
+
+.bg-theme-primary {
+    background-color: var(--theme-primary-color);
+}
+
+.bg-theme-darken {
+    background-color: var(--theme-darken-color);
+}
+
+.text-theme-primary {
+    color: var(--theme-primary-color);
+}
+
+.text-theme-darken {
+    color: var(--theme-darken-color);
+}
+
+.btn-theme-primary {
+    background-color: var(--theme-primary-color);
+    color: white;
+}
+
+.btn-theme-primary:hover {
+    color: var(--theme-darken-color);
+}
