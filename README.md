@@ -9,7 +9,7 @@ php artisan migrate
 ### Các tính năng cần call API được đẩy vào trong queue. Cần chạy worker để các tính năng này hoạt động
 
 ```
-php artisan queue:worker
+php artisan queue:work
 ```
 
 ### Chạy GlucoseRecordSeeder để đẩy dữ liệu đường huyết test vào GlucoseRecordSeeder
