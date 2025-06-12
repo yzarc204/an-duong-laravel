@@ -1,157 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Đăng ký</title>
-    <link rel="stylesheet" href={{ asset('vendors/bootstrap/css/bootstrap.min.css') }} />
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    @vite('resources/css/app.css')
 </head>
 
-<body>
-    <section class="bg-theme-darken">
-        <div class="container">
-            <div class="row justify-content-center py-5">
-                <div class="col-12 col-lg-5 col-md-7">
-                    <div class="card border border-light-subtle rounded-3 shadow-sm">
-                        <div class="card-body p-3 p-md-4 p-xl-5">
-                            <div class="text-center mb-3">
-                                <a href="#!">
-                                    <img src="" alt="Logo" width="175" height="57">
-                                </a>
-                            </div>
-                            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Đăng ký tài khoản</h2>
-                            <form action="{{ route('register') }}" method="POST">
-                                @csrf
-                                <div class="row gy-2 overflow-hidden">
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="name@example.com" value="{{ old('email') }}" required>
-                                            <label for="email" class="form-label">Email</label>
-                                        </div>
-                                        @if ($errors->has('email'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" name="password" id="password"
-                                                value="" placeholder="Mật khẩu" required>
-                                            <label for="password" class="form-label">Mật khẩu</label>
-                                        </div>
-                                        @if ($errors->has('password'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" name="password_confirm"
-                                                id="password_confirm" value="" placeholder="Xác nhận mật khẩu"
-                                                required>
-                                            <label for="password" class="form-label">Xác nhận mật khẩu</label>
-                                        </div>
-                                        @if ($errors->has('password_confirm'))
-                                            <div class="invalid-feedback d-block">
-                                                {{ $errors->first('password_confirm') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="name" id="name"
-                                                placeholder="Họ tên" value="{{ old('name') }}" required>
-                                            <label for="password" class="form-label">Họ tên</label>
-                                        </div>
-                                        @if ($errors->has('name'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('name') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group mb-3">
-                                            <label class="form-label">Giới tinh:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="is_male"
-                                                    id="is_male" value="1">
-                                                <label class="form-check-label" for="is_male">Nam</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="is_male"
-                                                    id="is_female" value="0">
-                                                <label class="form-check-label" for="is_female">Nữ</label>
-                                            </div>
-                                        </div>
-                                        @if ($errors->has('is_male'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('is_male') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="date" class="form-control" name="date_of_birth"
-                                                id="date_of_birth" value="{{ old('date_of_birth') }}"
-                                                placeholder="Họ tên" required>
-                                            <label for="password" class="form-label">Ngày sinh</label>
-                                        </div>
-                                        @if ($errors->has('date_of_birth'))
-                                            <div class="invalid-feedback d-block">
-                                                {{ $errors->first('date_of_birth') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" name="height" id="height"
-                                                placeholder="Chiều cao" value="{{ old('height') }}" required>
-                                            <label for="password" class="form-label">Chiều cao</label>
-                                        </div>
-                                        @if ($errors->has('height'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('height') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" name="weight" id="weight"
-                                                value="{{ old('weight') }}" placeholder="Cân nặng" required>
-                                            <label for="password" class="form-label">Cân nặng</label>
-                                        </div>
-                                        @if ($errors->has('weight'))
-                                            <div class="invalid-feedback d-block">{{ $errors->first('weight') }}</div>
-                                        @endif
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-grid my-3">
-                                            <button class="btn btn-theme-primary btn-lg" type="submit">Đăng
-                                                ký</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="m-0 text-secondary text-center">Đã có tài khoản?
-                                            <a href="{{ route('login') }}"
-                                                class="text-theme-darken text-decoration-none">
-                                                Đăng nhập ngay
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+<body class="bg-secondary font-sans flex items-center justify-center min-h-screen p-8">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+            <a href="#" class="text-4xl font-extrabold text-secondary"><img
+                    src="{{ asset('assets/images/logo.png') }}" class="w-70" alt=""></a>
+        </div>
+
+        <!-- Form đăng ký -->
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
+            <!-- Email -->
+            <div class="mb-5 relative">
+                <label for="email" class="block text-secondary text-md font-medium mb-2">Email</label>
+                <div class="flex items-center">
+                    <i class="fas fa-envelope text-secondary absolute ml-3"></i>
+                    <input type="email" id="email" name="email"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        value="{{ old('email') }}" required>
+                </div>
+                @if ($errors->has('email'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('email') }}</p>
+                @endif
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="mb-5 relative">
+                <label for="password" class="block text-secondary text-md font-medium mb-2">Mật khẩu</label>
+                <div class="flex items-center">
+                    <i class="fas fa-lock text-secondary absolute ml-3"></i>
+                    <input type="password" id="password" name="password"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        required>
+                </div>
+                @if ($errors->has('password'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('password') }}</p>
+                @endif
+            </div>
+
+            <!-- Mật khẩu xác nhận -->
+            <div class="mb-5 relative">
+                <label for="password_confirmation" class="block text-secondary text-md font-medium mb-2">
+                    Xác nhận mật khẩu
+                </label>
+                <div class="flex items-center">
+                    <i class="fas fa-lock text-secondary absolute ml-3"></i>
+                    <input type="password" id="password_confirmation" name="password_confirmation"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        required>
+                </div>
+                @if ($errors->has('password_confirmation'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('password_confirmation') }}</p>
+                @endif
+            </div>
+
+            <!-- Họ tên -->
+            <div class="mb-5 relative">
+                <label for="name" class="block text-secondary text-md font-medium mb-2">Họ tên</label>
+                <div class="flex items-center">
+                    <i class="fas fa-user text-secondary absolute ml-3"></i>
+                    <input type="text" id="name" name="name"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        value="{{ old('name') }}" required>
+                </div>
+                @if ($errors->has('name'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('name') }}</p>
+                @endif
+            </div>
+
+            <!-- Giới tính -->
+            <div class="mb-5">
+                <label class="block text-secondary text-sm font-medium mb-2">Giới tính</label>
+                <div class="flex space-x-6">
+                    <label class="flex items-center">
+                        <input type="radio" name="is_male" value="1" class="mr-2 text-primary focus:ring-primary"
+                            required>
+                        <span class="text-secondary">Nam</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="is_male" value="0" class="mr-2 text-primary focus:ring-primary"
+                            required>
+                        <span class="text-secondary">Nữ</span>
+                    </label>
+                </div>
+                @if ($errors->has('is_male'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('is_male') }}</p>
+                @endif
+            </div>
+
+            <!-- Ngày sinh -->
+            <div class="mb-5 relative">
+                <label for="date_of_birth" class="block text-secondary text-sm font-medium mb-2">Ngày sinh</label>
+                <div class="flex items-center">
+                    <i class="fas fa-calendar-alt text-secondary absolute ml-3"></i>
+                    <input type="date" id="date_of_birth" name="date_of_birth"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        value="{{ old('date_of_birth') }}" required>
+                </div>
+                @if ($errors->has('date_of_birth'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('date_of_birth') }}</p>
+                @endif
+            </div>
+
+            <div class="grid grid-cols-2 gap-x-3">
+                <!-- Chiều cao -->
+                <div class="mb-5 relative">
+                    <label for="height" class="block text-secondary text-sm font-medium mb-2">Chiều cao (cm)</label>
+                    <div class="flex items-center">
+                        <i class="fas fa-ruler-vertical text-secondary absolute ml-3"></i>
+                        <input type="number" id="height" name="height" min="0" step="1"
+                            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            value="{{ old('height') }}" required>
                     </div>
+                    @if ($errors->has('height'))
+                        <p class="text-sm text-red-500 mt-1">{{ $errors->first('height') }}</p>
+                    @endif
+                </div>
+
+                <!-- Cân nặng -->
+                <div class="mb-8 relative">
+                    <label for="weight" class="block text-secondary text-sm font-medium mb-2">Cân nặng (kg)</label>
+                    <div class="flex items-center">
+                        <i class="fas fa-scale-unbalanced text-secondary absolute ml-3"></i>
+                        <input type="number" id="weight" name="weight" min="0" step="0.1"
+                            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            value="{{ old('height') }}" required>
+                    </div>
+                    @if ($errors->has('weight'))
+                        <p class="text-sm text-red-500 mt-1">{{ $errors->first('weight') }}</p>
+                    @endif
                 </div>
             </div>
-        </div>
-    </section>
 
-    <script src="{{ asset('vendors/sweetalert/sweetalert2.all.min.js') }}"></script>
-    @if (session()->has('message'))
-        <script>
-            const message = "{{ session()->get('message') }}";
-            Swal.fire({
-                title: message,
-                icon: 'success'
-            });
-        </script>
-    @endif
+            <!-- Nút đăng ký -->
+            <button type="submit"
+                class="w-full bg-primary text-secondary px-4 py-3 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200 cursor-pointer">Đăng
+                ký</button>
+        </form>
+
+        <!-- Link quay lại đăng nhập -->
+        <div class="text-center mt-6">
+            <p class="text-secondary text-sm">
+                Đã có tài khoản?
+                <a href="{{ route('login') }}" class="text-green-600 font-medium hover:underline">Đăng nhập</a>
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>

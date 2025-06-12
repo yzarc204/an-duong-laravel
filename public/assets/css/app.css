@@ -1,31 +1,205 @@
+/* Variables */
 :root {
-    --theme-primary-color: #1dcd9f;
-    --theme-secondary-color: hsl(0, 0%, 13%);
-    --theme-black: #000000;
-    --theme-darken-color: #169976;
+    --theme-primary-color: #bbf246;
+    --theme-secondary-color: #192126;
+    --theme-background-color: #e3e3e3;
+
+    --theme-red-color: #f9b9b9;
+    --theme-light-red-color: #ffebeb;
+    --theme-red-text-color: #a80000;
+
+    --theme-blue-color: #aed1e0;
+    --theme-light-blue-color: #d8e6ec;
+    --theme-solid-blue-color: #3b82f6;
+    --theme-blue-text-color: #2b4855;
+
+    --theme-purple-color: #d6bbf8;
+    --theme-light-purple-color: #efe2ff;
+    --theme-solid-purple-color: #a855f7;
+    --theme-purple-text-color: #3d275a;
+
+    --theme-solid-green-color: #22c55e;
 }
 
+/* Background */
 .bg-theme-primary {
     background-color: var(--theme-primary-color);
 }
 
-.bg-theme-darken {
-    background-color: var(--theme-darken-color);
+.bg-theme-secondary {
+    background-color: var(--theme-secondary-color);
 }
 
+.bg-theme-background {
+    background-color: var(--theme-background-color);
+}
+
+/* Text */
 .text-theme-primary {
     color: var(--theme-primary-color);
 }
 
-.text-theme-darken {
-    color: var(--theme-darken-color);
+.text-theme-seconadry {
+    color: var(--theme-seconadry-color);
 }
 
+.text-theme-red {
+    color: var(--theme-red-text-color);
+}
+
+.text-theme-blue {
+    color: var(--theme-blue-text-color);
+}
+
+.text-theme-purple {
+    color: var(--theme-purple-color);
+}
+
+/* Button */
 .btn-theme-primary {
     background-color: var(--theme-primary-color);
-    color: white;
+    color: #000;
 }
 
 .btn-theme-primary:hover {
-    color: var(--theme-darken-color);
+    background-color: var(--theme-secondary-color);
+    color: #fff;
+}
+
+.btn-theme-secondary {
+    background-color: var(--theme-secondary-color);
+    color: #fff;
+}
+
+.btn-theme-secondary:hover {
+    background-color: var(--theme-primary-color);
+    color: #000;
+}
+
+/* Alerts */
+.alert.alert-theme-primary {
+    background-color: var(--theme-primary-color);
+    color: #000;
+}
+
+.alert.alert-theme-blue {
+    background-color: var(--theme-light-blue-color);
+    color: var(--theme-blue-text-color);
+}
+
+.alert.alert-theme-red {
+    background-color: var(--theme-light-red-color);
+    color: var(--theme-red-text-color);
+}
+
+/* App button */
+.app-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    color: #fff;
+}
+
+.app-button__icon {
+    font-size: 1.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.app-button__label {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: bold;
+}
+
+.app-button__desc {
+    margin-bottom: 0;
+}
+
+.app-button-blue {
+    background: var(--theme-solid-blue-color);
+}
+
+.app-button-green {
+    background: var(--theme-solid-green-color);
+}
+
+.app-button-purple {
+    background: var(--theme-solid-purple-color);
+}
+
+/* Layout */
+.navbar-brand img {
+    height: 40px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.navbar .navbar-brand,
+.navbar .d-flex span,
+.navbar .dropdown-toggle {
+    color: #ffffff;
+    /* White text for contrast */
+}
+
+.navbar .dropdown-toggle:hover {
+    color: #e9ecef;
+}
+
+.dropdown-menu {
+    background-color: #ffffff;
+}
+
+.dropdown-item {
+    color: #212529;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Bottom Navigation Bar color */
+.bottom-nav {
+    position: fixed;
+    bottom: 2%;
+    left: 2.5%;
+    width: 95%;
+    background-color: var(--theme-secondary-color);
+    z-index: 1000;
+    border-radius: 2.5rem;
+}
+
+.bottom-nav .menu-item {
+    padding: 15px 5px 10px 5px;
+    text-align: center;
+    color: #fff;
+    border-top: 5px solid var(--theme-secondary-color);
+}
+
+.bottom-nav .menu-item:hover {
+    border-top-color: var(--theme-primary-color);
+}
+
+.bottom-nav .menu-item i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.bottom-nav .menu-item span {
+    font-size: 0.9rem;
+}
+
+.bottom-nav .menu-item:hover {
+    color: var(--theme-primary-color);
 }

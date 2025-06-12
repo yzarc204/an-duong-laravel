@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +27,7 @@ class RegisterRequest extends FormRequest
             return [
                 'email' => ['required', 'string', 'max:255', 'email', Rule::unique('users')],
                 'password' => ['required', 'string', 'min:6', 'max:255'],
-                'password_confirm' => ['required', 'string', 'same:password'],
+                'password_confirmation' => ['required', 'same:password'],
                 'name' => ['required', 'string', 'max:255'],
                 'is_male' => ['required'],
                 'date_of_birth' => ['required', Rule::date()->beforeOrEqual(today())],
@@ -49,9 +50,9 @@ class RegisterRequest extends FormRequest
             'password.required' => 'Mật khẩu là trường bắt buộc',
             'password.string' => 'Mật khẩu không hợp lệ',
             'password.min' => 'Mật khẩu phải có ít nhất :min kí tự',
-            'password_confirm.required' => 'Mật khẩu xác nhận không đúng',
-            'password_confirm.string' => 'Mật khẩu xác nhận không hợp lệ',
-            'password_confirm.same' => 'Mật khẩu và mật khẩu xác nhận phải giống nhau',
+            'password_confirmation.required' => 'Mật khẩu xác nhận không đúng',
+            'password_confirmation.string' => 'Mật khẩu xác nhận không hợp lệ',
+            'password_confirmation.same' => 'Mật khẩu và mật khẩu xác nhận phải giống nhau',
             'name.required' => 'Họ tên là trường bắt buộc',
             'name.string' => 'Họ tên không hợp lệ',
             'name.max' => 'Họ tên không được vượt quá :max kí tự',
@@ -66,5 +67,10 @@ class RegisterRequest extends FormRequest
             'weight.numeric' => 'Cân nặng phải là số',
             'weight.between' => 'Cân nặng không hợp lệ',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        dd($validator->errors());
     }
 }

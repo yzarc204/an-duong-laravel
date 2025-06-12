@@ -24,7 +24,13 @@ class User extends Authenticatable
         'date_of_birth',
         'is_male',
         'height',
-        'weight'
+        'weight',
+        'latest_glucose',
+        'meal_suggestions'
+    ];
+
+    protected $appends = [
+        'gender'
     ];
 
     /**
@@ -48,7 +54,19 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_male' => 'boolean',
-            'date_of_birth' => 'date'
+            'date_of_birth' => 'date',
+            'meal_suggestions' => 'json',
+            'exercise_suggestions' => 'json',
         ];
+    }
+
+    public function glucoseRecords()
+    {
+        return $this->hasMany(GlucoseRecord::class);
+    }
+
+    public function getGenderAttribute()
+    {
+        return $this->is_male ? 'Nam' : 'Nữ';
     }
 }

@@ -1,81 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <link rel="stylesheet" href={{ asset('vendors/bootstrap/css/bootstrap.min.css') }} />
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <title>Đăng nhập</title>
+    @vite('resources/css/app.css')
 </head>
 
-<body>
-    <section class="bg-theme-darken vh-100">
-        <div class="container">
-            <div class="row justify-content-center py-5">
-                <div class="col-12 col-lg-5 col-md-7">
-                    <div class="card border border-light-subtle rounded-3 shadow-sm">
-                        <div class="card-body p-3 p-md-4 p-xl-5">
-                            <div class="text-center mb-3">
-                                <a href="#!">
-                                    <img src="" alt="Logo" width="175" height="57">
-                                </a>
-                            </div>
-                            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Đăng nhập</h2>
-                            <form action="{{ route('login') }}" method="POST">
-                                @csrf
-                                <div class="row gy-2 overflow-hidden">
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="name@example.com" required>
-                                            <label for="email" class="form-label">Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" name="password" id="password"
-                                                value="" placeholder="Mật khẩu" required>
-                                            <label for="password" class="form-label">Mật khẩu</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <a href="#!" class="text-theme-darken text-decoration-none">Quên mật
-                                            khẩu?</a>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-grid my-3">
-                                            <button class="btn btn-theme-primary btn-lg" type="submit">Đăng
-                                                nhập</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="m-0 text-secondary text-center">Chưa có tài khoản?
-                                            <a href="{{ route('register') }}"
-                                                class="text-theme-darken text-decoration-none">
-                                                Đăng ký ngay
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body class="bg-secondary font-sans flex items-center justify-center min-h-screen p-8">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+            <a href="#" class="text-4xl font-extrabold text-secondary"><img
+                    src="{{ asset('assets/images/logo.png') }}" class="w-70" alt=""></a>
         </div>
-    </section>
+
+
+        <!-- Form đăng ký -->
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <!-- Email -->
+            <div class="mb-5 relative">
+                <label for="email" class="block text-secondary text-md font-medium mb-2">Email</label>
+                <div class="flex items-center">
+                    <i class="fas fa-envelope text-secondary absolute ml-3"></i>
+                    <input type="email" id="email" name="email"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        required>
+                </div>
+                @if ($errors->has('email'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('email') }}</p>
+                @endif
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="mb-5 relative">
+                <label for="password" class="block text-secondary text-md font-medium mb-2">Mật khẩu</label>
+                <div class="flex items-center">
+                    <i class="fas fa-lock text-secondary absolute ml-3"></i>
+                    <input type="password" id="password" name="password"
+                        class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        required>
+                </div>
+                @if ($errors->has('password'))
+                    <p class="text-sm text-red-500 mt-1">{{ $errors->first('password') }}</p>
+                @endif
+            </div>
+
+            <!-- Nút đăng nhập -->
+            <button type="submit"
+                class="w-full bg-primary text-secondary px-4 py-3 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-200 cursor-pointer">Đăng
+                nhập</button>
+        </form>
+
+        <!-- Link quay lại đăng nhập -->
+        <div class="text-center mt-6">
+            <p class="text-secondary text-sm">
+                Chưa có tài khoản?
+                <a href="{{ route('register') }}" class="text-green-600 font-medium hover:underline">Đăng ký</a>
+            </p>
+        </div>
+    </div>
 
     <script src="{{ asset('vendors/sweetalert/sweetalert2.all.min.js') }}"></script>
+
     @if (session()->has('message'))
         <script>
             const message = "{{ session()->get('message') }}";
-            Swal.fire({
-                title: message,
-                icon: 'error'
-            });
+            if (message) {
+                Swal.fire({
+                    title: 'Thông báo',
+                    text: message,
+                    icon: 'info'
+                });
+            }
         </script>
     @endif
 </body>

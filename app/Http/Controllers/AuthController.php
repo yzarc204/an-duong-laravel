@@ -16,11 +16,12 @@ class AuthController extends Controller
             return view('auth.register');
         }
 
-        $userData = $request->validated();
-        $userData['password'] = bcrypt($userData['password']);
+        $userData = array_merge($request->validated(), [
+            'password' => bcrypt($request->password)
+        ]);
         User::create($userData);
 
-        return redirect()->back()->with('message', 'Đăng ký thành công!');
+        return redirect()->route('login')->with('message', 'Đăng ký thành công!');
     }
 
     public function login(Request $request)
@@ -31,9 +32,15 @@ class AuthController extends Controller
 
         $payload = $request->only('email', 'password');
         if (Auth::attempt($payload)) {
-            return view('home');
+            return redirect()->route('dashboard');
         }
 
         return redirect()->back()->with('message', 'Email hoặc mật khẩu không chính xác!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
