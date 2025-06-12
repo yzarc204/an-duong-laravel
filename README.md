@@ -12,9 +12,9 @@ php artisan migrate
 php artisan queue:work
 ```
 
-### Chạy GlucoseRecordSeeder để đẩy dữ liệu đường huyết test vào GlucoseRecordSeeder
+### Chạy GlucoseRecordSeeder để đẩy dữ liệu đường huyết test vào database
 
-#### Lưu ý: Tạo tài khoản có user_id = 1 để tránh gặp lỗi khi chạy GlucoseRecordSeeder
+#### Lưu ý: Tạo tài khoản đầu tiên (id = 1) trước để tránh gặp lỗi khi chạy GlucoseRecordSeeder
 
 ```
 php artisan db:seed --class=GlucoseRecordSeeder
